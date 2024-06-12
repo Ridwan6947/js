@@ -1,0 +1,19 @@
+React.js: Developed and maintained by Facebook, React.js is a component-based library for building 
+user interfaces. It allows developers to create reusable UI components and efficiently update the UI when 
+the underlying data changes. React's virtual DOM and one-way data flow make it fast and efficient.
+
+Angular: Angular is a platform and framework for building single-page client applications using HTML 
+and TypeScript. Developed and maintained by Google, Angular provides a comprehensive solution with 
+features like two-way data binding, dependency injection, routing, and state management.
+
+Vue.js: Its gradual adaptability from the ground up makes it simple to include into already-existing 
+projects. The view layer is the primary emphasis of Vue's core library, which is readily expanded with 
+other libraries for state management, routing, and other purposes.
+
+Node.js: Node.js enables developers to build scalable, server-side applications using JavaScript. 
+It provides an event-driven, non-blocking I/O model that makes it lightweight and efficient.
+
+Express.js: Express.js is a minimalist web application framework for Node.js. It provides a robust set 
+of features for building web and mobile applications, including middleware support, routing, templating 
+engines, and more. Express is widely used in conjunction with Node.js to create RESTful APIs and 
+backend services.
