@@ -28,7 +28,3 @@ for (let i = 0; i < arr.length; i++) {
 console.log("Odd numbers:", oddList);
 console.log("Even numbers:", evenList);
 console.log("Prime numbers:", primeList);
-
-
-
-
