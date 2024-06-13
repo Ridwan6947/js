@@ -10,7 +10,9 @@ function bubbleEventHandler(event) {
 }
 
 const container = document.getElementById('container');
+const child = document.getElementById('child');
 
 container.addEventListener('click', captureEventHandler, true);
-
+child.addEventListener('click', captureEventHandler, true);
 container.addEventListener('click', bubbleEventHandler, true);
+child.addEventListener('click', bubbleEventHandler, true); 
