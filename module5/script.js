@@ -13,4 +13,4 @@ const container = document.getElementById('container');
 
 container.addEventListener('click', captureEventHandler, true);
 
-container.addEventListener('click', bubbleEventHandler, false);
+container.addEventListener('click', bubbleEventHandler, true);
