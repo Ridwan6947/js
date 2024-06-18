@@ -1,27 +1,27 @@
 <script setup>
-import { ref, onMounted, computed, watch } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue' //ref - used to create a reference variable and manage state , onMounted - used to call a function when the component is mounted, computed - used to compute a value based on other values, watch - used to watch for changes in a value
 
-const todos = ref([])
-const name = ref('')
+const todos = ref([]) //empty array to add todos , used ref to declare a reference variable and manage state change
+const name = ref('') 
 
-const input_content = ref('')
+const input_content = ref('') //empty string of lable to add task
 const input_category = ref(null)
 
-const todos_asc = computed(() => todos.value.sort((a,b) =>{
+const todos_asc = computed(() => todos.value.sort((a,b) =>{  //computed to sort the todos on the basis of most oldest
 	return a.createdAt - b.createdAt
 }))
 
-watch(name, (newVal) => {
+watch(name, (newVal) => {             //perform state change when name changes and store it in local storage
 	localStorage.setItem('name', newVal)
 })
 
-watch(todos, (newVal) => {
+watch(todos, (newVal) => {             //perform state change when todos changes and store it in local storage
 	localStorage.setItem('todos', JSON.stringify(newVal))
 }, {
 	deep: true
 })
 
-const addTodo = () => {
+const addTodo = () => {                //function to add todo
 	if (input_content.value.trim() === '' || input_category.value === null) {
 		return
 	}
@@ -39,7 +39,7 @@ const removeTodo = (todo) => {
 	todos.value = todos.value.filter((t) => t !== todo)
 }
 
-onMounted(() => {
+onMounted(() => {      
 	name.value = localStorage.getItem('name') || ''
 	todos.value = JSON.parse(localStorage.getItem('todos')) || []
 })
