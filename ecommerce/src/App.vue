@@ -1,5 +1,7 @@
 <template>
-  <component :is="currentView" :cart="cart" @add-to-cart="addToCart" />
+  <div>
+    <component :is="currentView" :cart="cart" @add-to-cart="addToCart" />
+  </div>
 </template>
 
 <script setup>
@@ -9,6 +11,7 @@ import Login from '../src/pages/Login.vue';
 import Home from '../src/pages/Home.vue';
 import Cart from '../src/pages/Cart.vue';
 
+
 const routes = {
   '/': Login,
   '/register': Register,
@@ -17,7 +20,6 @@ const routes = {
 };
 
 const currentPath = ref(window.location.hash);
-const cart = ref([]);
 
 window.addEventListener('hashchange', () => {
   currentPath.value = window.location.hash;
@@ -26,6 +28,8 @@ window.addEventListener('hashchange', () => {
 const currentView = computed(() => {
   return routes[currentPath.value.slice(1) || '/'];
 });
+
+const cart = ref([]);
 
 const addToCart = (product) => {
   cart.value.push(product);

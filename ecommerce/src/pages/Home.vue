@@ -3,17 +3,27 @@
       <section class="navBar">
         <img src="" alt="Amazon">
         <input class="search" type="text" placeholder="Search">
-        <button @click="goToCart" class="cart-btn">Cart</button>
+        <div class="nav-buttons">
+          <button @click="setCategory('electronics')" class="btn">Electronics</button>
+          <button @click="setCategory('jewelery')" class="btn">Jewelery</button>
+          <button @click="setCategory('men\'s clothing')" class="btn">Men's Clothing</button>
+          <button @click="setCategory('women\'s clothing')" class="btn">Women's Clothing</button>
+          <button @click="goToCart" class="btn">Cart</button>
+        </div>
       </section>
-  
       <section class="products">
-        <ProductCard :product="product1" @add-to-cart="addToCart" />
-        <ProductCard :product="product2" @add-to-cart="addToCart" />
+        <ProductCard 
+          v-for="product in products" 
+          :key="product.id" 
+          :product="product" 
+          @add-to-cart="addToCart" 
+        />
       </section>
     </div>
   </template>
   
   <script>
+  import axios from 'axios';
   import ProductCard from '../components/productCard.vue';
   
   export default {
@@ -23,18 +33,8 @@
     },
     data() {
       return {
-        product1: {
-          name: 'Product 1',
-          description: 'Description of product 1',
-          price: '$10',
-          imageUrl: 'product1.jpg'
-        },
-        product2: {
-          name: 'Product 2',
-          description: 'Description of product 2',
-          price: '$20',
-          imageUrl: 'product2.jpg'
-        }
+        products: [],
+        currentCategory: 'electronics' 
       };
     },
     methods: {
@@ -43,7 +43,23 @@
       },
       addToCart(product) {
         this.$emit('add-to-cart', product);
+      },
+      fetchProducts(category) {
+        axios.get(`https://fakestoreapi.com/products/category/${category}`)
+          .then(response => {
+            this.products = response.data;
+          })
+          .catch(error => {
+            console.error("Error fetching products:", error);
+          });
+      },
+      setCategory(category) {
+        this.currentCategory = category;
+        this.fetchProducts(category);
       }
+    },
+    created() {
+      this.fetchProducts(this.currentCategory);
     }
   };
   </script>
@@ -64,7 +80,12 @@
     width: 400px;
   }
   
-  .cart-btn {
+  .nav-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .btn {
     padding: 10px;
     background-color: #007bff;
     color: #fff;
@@ -75,6 +96,7 @@
   
   .products {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
   }
   </style>
