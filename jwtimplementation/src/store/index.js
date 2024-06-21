@@ -50,6 +50,8 @@ export default createStore({
     }
   },
   getters: {
-    authError: state => state.error
+    authError: state => state.error,
+    authToken: state => state.token,
+    isAuthenticated: state => !!state.token
   }
 });

@@ -1,5 +1,6 @@
 <template>
     <h1>Home Page</h1>
+    <button @click="testHeader">Test Me</button>
   </template>
   
   <style scoped>
@@ -11,7 +12,17 @@
   }
   </style>
   
-  <script setup>
+  <script setup >
+  import axiosInstance from '../axios.js';
 
+  const testHeader = () => {
+    axiosInstance.get('https://fakestoreapi.com/products/1').then((response) => {
+      console.log(response.data);
+      
+    }).catch((error) => {
+      console.log(error);
+    });
+  };
+    
   </script>
   
