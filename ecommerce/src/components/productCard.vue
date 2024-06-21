@@ -1,8 +1,8 @@
 <template>
   <div class="product-card">
-    <img :src="product.imageUrl" :alt="product.name" class="product-image">
+    <img :src="product.image" :alt="product.title" class="product-image">
     <div class="product-details">
-      <h2 class="product-name">{{ product.name }}</h2>
+      <h2 class="product-name">{{ product.title }}</h2>
       <p class="product-description">{{ product.description }}</p>
       <div class="product-price">{{ product.price }}</div>
       <button @click="addToCart" class="add-to-cart-button">Add to Cart</button>
@@ -28,6 +28,7 @@ export default {
 </script>
 
 <style scoped>
+
 .product-card {
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -35,12 +36,14 @@ export default {
   width: 250px;
   margin: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .product-image {
-  width: 100%;
+  width: 50%;
   border-radius: 5px;
-  margin-bottom: 10px;
 }
 
 .product-name {

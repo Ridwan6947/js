@@ -4,7 +4,7 @@
       <ul>
         <li v-for="(item, index) in cart" :key="index" class="cart-item">
           <div class="item-details">
-            <span class="item-name">{{ item.name }}</span>
+            <span class="item-name">{{ item.title }}</span>
             <span class="item-price">{{ item.price }}</span>
           </div>
         </li>
