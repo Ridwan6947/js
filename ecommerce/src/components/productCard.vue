@@ -28,7 +28,6 @@ export default {
 </script>
 
 <style scoped>
-
 .product-card {
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -42,7 +41,7 @@ export default {
 }
 
 .product-image {
-  width: 50%;
+  width: 100%;
   border-radius: 5px;
 }
 
