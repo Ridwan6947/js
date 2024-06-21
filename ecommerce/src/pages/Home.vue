@@ -4,6 +4,8 @@
       <img src="" alt="Amazon">
       <input class="search" type="text" placeholder="Search">
       <div class="nav-buttons">
+        <button @click="sort('asc')" class="btn">Low to High</button>
+        <button @click="sort('desc')" class="btn">High to Low</button>
         <button @click="setCategory('electronics')" class="btn">Electronics</button>
         <button @click="setCategory('jewelery')" class="btn">Jewelery</button>
         <button @click="setCategory('men\'s clothing')" class="btn">Men's Clothing</button>
@@ -35,7 +37,7 @@ export default {
   data() {
     return {
       products: [],
-      currentCategory: 'electronics'
+      currentCategory: 'electronics',
     };
   },
   methods: {
@@ -43,7 +45,16 @@ export default {
     goToCart() {
       window.location.hash = '/cart';
     },
-    fetchProducts(category) {
+    fetchProductsBySort(category, order) {
+      axios.get(`https://fakestoreapi.com/products/category/${category}?sort=${order}`)
+        .then(response => {
+          this.products = response.data;
+        })
+        .catch(error => {
+          console.error("Error fetching products:", error);
+        });
+    },
+    fetchProductsByCategory(category) {
       axios.get(`https://fakestoreapi.com/products/category/${category}`)
         .then(response => {
           this.products = response.data;
@@ -54,11 +65,15 @@ export default {
     },
     setCategory(category) {
       this.currentCategory = category;
-      this.fetchProducts(category);
+      this.fetchProductsByCategory(category);
+    },
+
+    sort(order){
+      this.fetchProductsBySort(this.currentCategory , order);
     }
   },
   created() {
-    this.fetchProducts(this.currentCategory);
+    this.fetchProductsByCategory(this.currentCategory);
   }
 };
 </script>
