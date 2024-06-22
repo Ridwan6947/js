@@ -1,16 +1,16 @@
-<template>
+\<template>
   <div>
     <section class="navBar">
       <img src="" alt="Amazon">
-      <input class="search" type="text" placeholder="Search">
+      <input class="search" type="text" :placeholder="$t('nav.search_placeholder')">
       <div class="nav-buttons">
-        <button @click="sort('asc')" class="btn">Low to High</button>
-        <button @click="sort('desc')" class="btn">High to Low</button>
-        <button @click="setCategory('electronics')" class="btn">Electronics</button>
-        <button @click="setCategory('jewelery')" class="btn">Jewelery</button>
-        <button @click="setCategory('men\'s clothing')" class="btn">Men's Clothing</button>
-        <button @click="setCategory('women\'s clothing')" class="btn">Women's Clothing</button>
-        <button @click="goToCart" class="btn">Cart</button>
+        <button @click="sort('asc')" class="btn">{{$t('buttons.low_to_high')}}</button>
+        <button @click="sort('desc')" class="btn">{{$t('buttons.high_to_low')}}</button>
+        <button @click="setCategory('electronics')" class="btn">{{$t('buttons.electronics')}}</button>
+        <button @click="setCategory('jewelery')" class="btn">{{$t('buttons.jewelery')}}</button>
+        <button @click="setCategory('men\'s clothing')" class="btn">{{$t('buttons.mens_clothing')}}</button>
+        <button @click="setCategory('women\'s clothing')" class="btn">{{$t('buttons.womens_clothing')}}</button>
+        <button @click="goToCart" class="btn">{{$t('buttons.cart')}}</button>
       </div>
     </section>
     <section class="products">
@@ -51,7 +51,7 @@ export default {
           this.products = response.data;
         })
         .catch(error => {
-          console.error("Error fetching products:", error);
+          console.error(this.$t('messages.error_fetching_products'), error); // Translate error message
         });
     },
     fetchProductsByCategory(category) {
@@ -60,7 +60,7 @@ export default {
           this.products = response.data;
         })
         .catch(error => {
-          console.error("Error fetching products:", error);
+          console.error(this.$t('messages.error_fetching_products'), error); // Translate error message
         });
     },
     setCategory(category) {

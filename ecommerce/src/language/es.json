@@ -1,0 +1,15 @@
+{
+    "buttons": {
+      "low_to_high": "De menor a mayor",
+      "high_to_low": "De mayor a menor",
+      "electronics": "Electrónica",
+      "jewelery": "Joyería",
+      "mens_clothing": "Ropa para hombres",
+      "womens_clothing": "Ropa para mujeres",
+      "cart": "Carrito"
+    },
+    "messages": {
+      "error_fetching_products": "Error al obtener productos:"
+    }
+  }
+  
