@@ -1,8 +1,8 @@
 <template>
-    <div class="login-container">
-      <div class="login-form">
-        <h1>Sign-In</h1>
-        <form @submit.prevent="login">
+    <div class="register-container">
+      <div class="register-form">
+        <h1>Register</h1>
+        <form @submit.prevent="register">
           <div class="form-group">
             <label for="username">Username</label>
             <input type="text" name="username" v-model="username" placeholder="Enter your username">
@@ -11,50 +11,36 @@
             <label for="password">Password</label>
             <input type="password" name="password" v-model="password" placeholder="Enter your password">
           </div>
-          <button type="submit" class="login-button">Sign-In</button>
+          <button type="submit" class="register-button">Register</button>
         </form>
-        <div class="new-user">
-          <p>New to Amazon?</p>
-          <button @click="goToRegister">Register</button>
+        <div class="existing-user">
+          <p>Already have an account?</p>
+          <button @click="goToLogin">Login</button>
         </div>
       </div>
     </div>
   </template>
   
-  <script>
+  <script setup>
+    import { ref } from 'vue';
+    import { useStore } from 'vuex';
 
-  
-  export default {
-    name:'userLogin',
-    data() {
-      return {
-        username: '',
-        password: '',
-        errorMessage: ''
-      };
-    },
-    methods: {
-      login() {
-        const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+    const username = ref('');
+    const password = ref('');
+    const store = useStore();
 
-        const user = registeredUsers.find(user => user.username === this.username && user.password === this.password);
-        if (user) {
-          console.log('User logged in:', user);
-          window.location.hash = '/home';
-        } else {
-          this.errorMessage = 'Invalid email or password.';
-        }
-      },
-      goToRegister(event) {
-        event.preventDefault();
-        window.location.hash = '/register';
+    const register = () =>{
+      if(username.value && password.value){
+        const user = {username: username.value, password: password.value};
+        store.dispatch('register' , user);
+        window.location.hash = '/';
       }
     }
-  };
+  
   </script>
   
   <style scoped>
-  .login-container {
+  .register-container {
     position: fixed;
     top: 0;
     left: 0;
@@ -66,7 +52,7 @@
     overflow: hidden; 
   }
   
-  .login-form {
+  .register-form {
     background: #fff;
     padding: 20px;
     border: 1px solid #ddd;
@@ -99,21 +85,21 @@
     border-radius: 4px;
   }
   
-  .login-button {
+  .register-button {
     width: 100%;
     padding: 10px;
-    background-color: #f0c14b;
-    border: 1px solid #a88734;
+    background-color: #34a853;
+    border: 1px solid #2d8e3e;
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
   }
   
-  .new-user {
+  .existing-user {
     margin-top: 20px;
   }
   
-  .new-user button {
+  .existing-user button {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;

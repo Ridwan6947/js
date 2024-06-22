@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axiosInstance from '../axiosInstance.js';
 import { mapActions } from 'vuex';
 import ProductCard from '../components/productCard.vue';
 
@@ -46,7 +46,7 @@ export default {
       window.location.hash = '/cart';
     },
     fetchProductsBySort(category, order) {
-      axios.get(`https://fakestoreapi.com/products/category/${category}?sort=${order}`)
+      axiosInstance.get(`/products/category/${category}?sort=${order}`)
         .then(response => {
           this.products = response.data;
         })
@@ -55,7 +55,7 @@ export default {
         });
     },
     fetchProductsByCategory(category) {
-      axios.get(`https://fakestoreapi.com/products/category/${category}`)
+      axiosInstance.get(`/products/category/${category}`)
         .then(response => {
           this.products = response.data;
         })
