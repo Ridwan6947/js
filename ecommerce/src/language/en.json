@@ -1,0 +1,15 @@
+{
+    "buttons": {
+      "low_to_high": "Low to High",
+      "high_to_low": "High to Low",
+      "electronics": "Electronics",
+      "jewelery": "Jewelery",
+      "mens_clothing": "Men's Clothing",
+      "womens_clothing": "Women's Clothing",
+      "cart": "Cart"
+    },
+    "messages": {
+      "error_fetching_products": "Error fetching products:"
+    }
+  }
+  
