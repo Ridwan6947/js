@@ -6,15 +6,15 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-import Register from '../src/pages/Register.vue';
-import Login from '../src/pages/Login.vue';
+import RegisterPage from './pages/RegisterPage.vue';
+import LoginPage from './pages/LoginPage.vue';
 import Home from '../src/pages/Home.vue';
 import Cart from '../src/pages/Cart.vue';
 
 
 const routes = {
-  '/': Login,
-  '/register': Register,
+  '/': LoginPage,
+  '/register': RegisterPage,
   '/home': Home,
   '/cart': Cart
 };
