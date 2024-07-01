@@ -33,6 +33,9 @@ const addTodo = () => {                //function to add todo
 		editable: false,
 		createdAt: new Date().getTime()
 	})
+
+	input_category.value == '';
+	input_content.value = '';
 }
 
 const removeTodo = (todo) => {
