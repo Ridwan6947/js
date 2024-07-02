@@ -1,5 +1,6 @@
-\<template>
+<template>
   <div>
+    <!-- Navigation bar with search input and category/sort buttons -->
     <section class="navBar">
       <img src="" alt="Amazon">
       <input class="search" type="text" :placeholder="$t('nav.search_placeholder')">
@@ -13,9 +14,11 @@
         <button @click="goToCart" class="btn">{{$t('buttons.cart')}}</button>
       </div>
     </section>
+
+    <!-- Product cards display -->
     <section class="products">
       <ProductCard 
-        v-for="product in products" 
+        v-for="product in products"    
         :key="product.id" 
         :product="product" 
         @add-to-cart="addToCart" 
@@ -36,43 +39,47 @@ export default {
   },
   data() {
     return {
-      products: [],
-      currentCategory: 'electronics',
+      products: [], // Array to hold fetched products
+      currentCategory: 'electronics', // Default category to fetch products
     };
   },
   methods: {
-    ...mapActions(['addToCart']),
+    ...mapActions(['addToCart']), // Map Vuex action to add products to cart
     goToCart() {
-      window.location.hash = '/cart';
+      window.location.hash = '/cart'; // Navigate to the cart page
     },
+    // Fetch products by category and sort order (asc/desc)
     fetchProductsBySort(category, order) {
       axiosInstance.get(`/products/category/${category}?sort=${order}`)
         .then(response => {
-          this.products = response.data;
+          this.products = response.data; // Update products with fetched data
         })
         .catch(error => {
-          console.error(this.$t('messages.error_fetching_products'), error); // Translate error message
+          console.error(this.$t('messages.error_fetching_products'), error); // Translate and log error message
         });
     },
+    // Fetch products by category
     fetchProductsByCategory(category) {
       axiosInstance.get(`/products/category/${category}`)
         .then(response => {
-          this.products = response.data;
+          this.products = response.data; // Update products with fetched data
         })
         .catch(error => {
-          console.error(this.$t('messages.error_fetching_products'), error); // Translate error message
+          console.error(this.$t('messages.error_fetching_products'), error); // Translate and log error message
         });
     },
+    // Set the current category and fetch products for that category
     setCategory(category) {
       this.currentCategory = category;
       this.fetchProductsByCategory(category);
     },
-
+    // Sort products by order (asc/desc)
     sort(order){
       this.fetchProductsBySort(this.currentCategory , order);
     }
   },
   created() {
+    // Fetch products for the default category when component is created
     this.fetchProductsByCategory(this.currentCategory);
   }
 };

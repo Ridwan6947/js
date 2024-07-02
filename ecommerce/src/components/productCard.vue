@@ -2,10 +2,10 @@
   <div class="product-card">
     <img :src="product.image" :alt="product.title" class="product-image">
     <div class="product-details">
-      <h2 class="product-name">{{ product.title }}</h2>
+      <h2 class="product-name">{{ product.title }}</h2> //declaretive rendering to render product title
       <p class="product-description">{{ product.description }}</p>
       <div class="product-price">{{ product.price }}</div>
-      <button @click="addToCart" class="add-to-cart-button">Add to Cart</button>
+      <button @click="addToCart" class="add-to-cart-button">Add to Cart</button> //addToCart calls the action which dispatches mutation which commit state and push item to cart and update its state
     </div>
   </div>
 </template>
@@ -13,7 +13,7 @@
 <script>
 export default {
   name: 'ProductCard',
-  props: {
+  props: {            //props are the data that will be passed to the component , here we are passing product object as props
     product: {
       type: Object,
       required: true
@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     addToCart() {
-      this.$emit('add-to-cart', this.product); 
+      this.$emit('add-to-cart', this.product);     // this.$emit is used to emit the event , listen here and execute in the home.vue
     }
   }
 };
