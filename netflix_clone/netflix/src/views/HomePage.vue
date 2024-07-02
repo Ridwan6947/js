@@ -3,8 +3,10 @@
     <ion-header >
       <ion-toolbar>
         <ion-img src="../../public/pngwing.com.png" class="logo-png"></ion-img>
-        <ion-button color="[red]" slot="secondary">Language</ion-button>
-        <ion-button  color="[red]" slot="end">Sign in</ion-button>
+        <ion-buttons slot="end" >
+          <ion-button>Language</ion-button>
+          <ion-button>Sign in</ion-button>
+        </ion-buttons>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true" class="ion-padding">
