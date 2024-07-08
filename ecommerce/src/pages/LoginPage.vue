@@ -31,7 +31,7 @@
 
     const login = () =>{
       try {
-        store.dispatch('login' , {username: username.value, password: password.value});
+        store.dispatch('login' , {username: username.value, password: password.value}); // Dispatch login action , passing value of username and password by wrapping them in a reactive object using ref
         window.location.hash = '/home';
       } catch (error) {
         console.log(error);

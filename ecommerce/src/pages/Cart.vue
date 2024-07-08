@@ -2,9 +2,9 @@
   <div class="cart">
     <h2>Cart Items</h2>
     <ul>
-      <li v-for="(item, index) in cart" :key="index" class="cart-item">
+      <li v-for="(item, index) in cart" :key="index" class="cart-item">  //v-for is used to iterate through the items in cart array
         <div class="item-details">
-          <span class="item-name">{{ item.title }}</span>
+          <span class="item-name">{{ item.title }}</span> //declaretive rendering for title
           <span class="item-price">{{ item.price }}</span>
         </div>
       </li>
@@ -20,7 +20,7 @@ export default {
   name: 'AmazonCart',
   setup() {
     const store = useStore();
-    const cart = computed(() => store.getters.cart);
+    const cart = computed(() => store.getters.cart);   //computed to get cart data from store and pass it to cart
 
     return {
       cart

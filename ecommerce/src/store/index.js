@@ -1,14 +1,19 @@
 import { createStore } from 'vuex';
 
 export default createStore({
+
+  // state objects to hold application data
   state: {
-    username: localStorage.getItem('username') || '',
+    username: localStorage.getItem('username') || '', 
     password: localStorage.getItem('password') || '',
     users:JSON.parse(localStorage.getItem('users')) || [],
     cart: []
   },
+
+  //mutations to modify the state of application data 
   mutations: {
-    ADD_TO_CART(state, product) {
+    // add product to cart mutaion
+    ADD_TO_CART(state, product) {   
       state.cart.push(product);
     },
     registerSuccess(state, user) {
@@ -19,7 +24,9 @@ export default createStore({
       state.password = user.password;
     }
   },
-  actions: {
+
+  //actions to commit mutations and perform asynchronous operations
+  actions: { 
     addToCart({ commit }, product) {
       commit('ADD_TO_CART', product);
     },
@@ -40,11 +47,12 @@ export default createStore({
       }else{
         const newUser = { username, password };
         commit('registerSuccess', newUser);
-        localStorage.setItem('users', JSON.stringify(state.users));
+        localStorage.setItem('users', JSON.stringify(state.users));  //JSON.stringify converts users array into JSON string, data is stored even if browser is closed
       }
     }
   },
+
   getters: {
-    cart: (state) => state.cart
+    cart: (state) => state.cart //getter to access the cart state
   }
 });
