@@ -17,11 +17,19 @@ async function fetchProduct(productId) {
 async function fetchProductsInfo(productIds) {     //async function takes an array of productID as argument
     try {
         //maps each productID in the array to the promise returned by the fetchProduct function
-        const promises = productIds.map(productId => fetchProduct(productId));  
+        const promises = productIds.map(productId => fetchProduct(productId).catch(error => error));  
 
-        //  promise.all to wait for all the promises to resolve
-        const productsInfo = await Promise.all(promises);
-        
+        const results = await Promise.allSettled(promises);
+
+        const productsInfo = results.map(result => {
+            if (result.status === 'fulfilled') {
+                return result.value;
+            } else {
+                console.error('Failed to fetch product:', result.reason);
+                return { error: `Failed to fetch product: ${result.reason}` };
+            }
+        });
+
         return productsInfo;
     } catch (error) {
         console.error('Error fetching products info:', error);
