@@ -1,0 +1,13 @@
+a = 10;
+console.log(a);
+var a;
+
+=> In javaScript , variables declared with var are hoisted at the top of their scope when executed , so this 
+will gt executed without any error
+
+a = 5;
+console.log(a);
+let a;
+
+=> This program will give an error i.e reference error as when executed variables declared with let are hoisted 
+at the top of their scope but they are not initialized 
