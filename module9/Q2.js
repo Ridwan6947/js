@@ -1,4 +1,4 @@
-const apiBase = 'https://fakestoreapi.com/products';
+const apiBase = 'https://fakestoreapi.com/productsp';
 
 async function fetchProduct(productId) {
     const url = `${apiBase}/${productId}`;  //$ - template literal => allow to embed an expression within a string
